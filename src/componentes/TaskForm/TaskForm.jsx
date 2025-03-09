@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { TaskContext } from '../Context/TaskContext';
 
 function TaskForm({ onAddTask }) {
   const [taskText, setTaskText] = useState('');
 
+  const { addTask } = useContext(TaskContext);
+
   const handleSubmit = (e) => {
 	e.preventDefault();
 	if (taskText.trim()) {
-  	onAddTask(taskText);
-  	setTaskText('');
+		addTask(taskText);
+		setTaskText('');
 	}
   };
 
