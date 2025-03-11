@@ -25,12 +25,13 @@ function App() {
 		setFilter(filter);
 	}
 
+	//Envolvemos nuestra app con el taksprovider para poder usar sus variables
 	return (
 		<TaskProvider>
 		<div className="app">
 			<button onClick={logout} >Salir</button>
 			<h1>Gestión de Tareas - 2º DAW</h1>
-			{loggeado ? (
+			{loggeado ? ( //Loggeado viene del main que es donde evuelvo todo para tener la variable y dependiendo de esta muestro una cosa u otra
 			<>
 				<TaskFilter onAddFilter={addFilter} />
 				<TaskForm filter={filter} />
