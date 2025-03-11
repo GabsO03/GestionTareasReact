@@ -9,19 +9,22 @@ import TaskFilter from './componentes/TaskFilter/TaskFilter';
 import Login from './componentes/Login/Login';
 
 function App() {
-	const { loggeado, logout } = useContext(AuthContext);//
+	const { loggeado, logout } = useContext(AuthContext);//Cogemos las variables del authcontext que llamamos en el main.jsx
 
+	//Busca si está algún filtro en el localstorage y si no lo inicializa como cadena vacía
+	//No necesita conversión porque el filtro es siempre un string
 	const [filter, setFilter] = useState(() => {
 		const storedFilter = localStorage.getItem('filter');
 		return storedFilter ? storedFilter : '';
 	});
 
+	//Se actualiza en el local storage cunado cambia su valor
 	useEffect(() => { 
 		localStorage.setItem('filter', filter);
 	}, [filter]);
 
 
-	const addFilter = (filter) => {
+	const addFilter = (filter) => {//Función para actualizar su valor
 		setFilter(filter);
 	}
 
@@ -37,7 +40,7 @@ function App() {
 				<TaskForm filter={filter} />
 				<TaskList filter={filter} />
 			</>
-			) : (
+			) : ( //Si no está loggeado nos muestra esto
 				<Login />
 			)}
 		</div>
